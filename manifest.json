@@ -1,0 +1,18 @@
+{
+	"name": "Tinysong",
+	"version": "1.0",
+	"description": "Create music links that make it easy to share music for free with your friends.",
+	"icons": {
+		"16": "icon16.png",
+		"48": "icon48.png"
+	},
+	"browser_action": {
+		"default_title": "Tinysong",
+		"default_icon": "icon.png",
+		"default_popup": "popup.html"
+	},
+	"permissions": [
+		"tabs",
+		"http://tinysong.com/*"
+	]
+}
