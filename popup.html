@@ -60,9 +60,9 @@
 		}
 		</style>
 
-		<script type="text/javascript" src="http://github.com/dhabersack/tinysong-chrome-extension/js/ZeroClipboard.js"></script>
+		<script type="text/javascript" src="http://tinysong.comwebincludes/js/jquery/zeroclipboard.js"></script>
 		<script type="text/javascript">
-		ZeroClipboard.setMoviePath('http://github.com/dhabersack/tinysong-chrome-extension/js/ZeroClipboard.swf');
+		ZeroClipboard.setMoviePath('http://tinysong.com/webincludes/swf/ZeroClipboard.swf');
 		</script>
 
 		<script type="text/javascript">
@@ -128,16 +128,18 @@
 				container.innerHTML += '<p>' +
 						'<a href="' + result.Url + '" onclick="javascript:openUrl(\'' + result.Url + '\');">' + result.SongName + '</a>' +
 						' by <strong>' + result.ArtistName + '</strong><br>' +
-						'<div id="container-' + result.SongID + '" style="position: relative">' +
-						'<div id="clip-' + result.SongID + '">Copy to clipboard</div>' +
-						'</div>' +
+						'<a href="#" id="clip-' + result.SongID + '">Copy to clipboard</div>' +
 						'<em>' + result.Url + '</em>' +
 						'</p>';
 
 				var clip = new ZeroClipboard.Client();
 				clip.setText(result.Url);
-				// clip.setHandCursor(false); // true is default
-				clip.glue('clip-' + result.SongID, 'container-' + result.SongID);
+				clip.setHandCursor(true);
+				clip.glue('clip-' + result.SongID);
+
+				clip.addEventListener('complete', function(client, text) {
+					alert("Copied text to clipboard: " + text);
+				});
 			}
 
 			var inputField = document.getElementById('query');
