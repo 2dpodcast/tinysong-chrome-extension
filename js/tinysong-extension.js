@@ -6,7 +6,7 @@ $(document).ready(function() {
 });
 
 // Tinysong API URL
-var tinysongUrl = 'http://tinysong.com/s/%s?format=json';
+var tinysongUrl = 'http://tinysong.com/s/%s?format=json&limit=5';
 
 // contains results/errors
 var container;

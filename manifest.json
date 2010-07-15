@@ -1,6 +1,6 @@
 {
 	"name": "Tinysong",
-	"version": "1.0.2",
+	"version": "1.0.3dev",
 	"description": "Create music links that make it easy to share music for free with your friends.",
 	"icons": {
 		"16": "img/icon16.png",
