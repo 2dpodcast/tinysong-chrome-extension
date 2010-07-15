@@ -21,8 +21,19 @@
 			-webkit-box-shadow: 0 1px 2px #333;
 		}
 
+		h1 {
+			margin: 0;
+			padding: 0;
+		}
+
+		h1 > a {
+			background: url(img/logo-small.png) no-repeat center center;
+			display: block;
+			text-indent: -999em;
+		}
+
 		input[type=text] {
-			background: #3E6D6A url(magnifier.png) no-repeat right center;
+			background: #3E6D6A url(img/magnifier.png) no-repeat right center;
 			border: 0;
 			color: #fff;
 			font-size: 12px;
@@ -48,6 +59,11 @@
 			margin: 0;
 		}
 		</style>
+
+		<script type="text/javascript" src="http://github.com/dhabersack/tinysong-chrome-extension/js/ZeroClipboard.js"></script>
+		<script type="text/javascript">
+		ZeroClipboard.setMoviePath('http://github.com/dhabersack/tinysong-chrome-extension/js/ZeroClipboard.swf');
+		</script>
 
 		<script type="text/javascript">
 		// Tinysong API URL
@@ -109,16 +125,28 @@
 				// available attributes:
 				//   Url, SongID, SongName, ArtistID, ArtistName, AlbumID, AlbumName
 
-				container.innerHTML += '<p>'
-						+ '<a href="' + result.Url + '" onclick="javascript:showUrl(\'' + result.Url + '\');">' + result.SongName + '</a>'
-						+ ' by <strong>' + result.ArtistName + '</strong><br>'
-						+ '<em>' + result.Url + '</em>'
-						+ '</p>';
+				container.innerHTML += '<p>' +
+						'<a href="' + result.Url + '" onclick="javascript:openUrl(\'' + result.Url + '\');">' + result.SongName + '</a>' +
+						' by <strong>' + result.ArtistName + '</strong><br>' +
+						'<div id="container-' + result.SongID + '" style="position: relative">' +
+						'<div id="clip-' + result.SongID + '">Copy to clipboard</div>' +
+						'</div>' +
+						'<em>' + result.Url + '</em>' +
+						'</p>';
+
+				var clip = new ZeroClipboard.Client();
+				clip.setText(result.Url);
+				// clip.setHandCursor(false); // true is default
+				clip.glue('clip-' + result.SongID, 'container-' + result.SongID);
 			}
+
+			var inputField = document.getElementById('query');
+			inputField.focus();
+			inputField.select();
 		}
 
-		// Show |url| in a new tab.
-		function showUrl(url) {
+		// Open |url| in a new tab.
+		function openUrl(url) {
 			// Only allow http and https URLs.
 			if (url.indexOf("http:") != 0 && url.indexOf("https:") != 0) {
 				return;
@@ -129,6 +157,8 @@
 	</head>
 
 	<body>
+		<h1><a href="http://tinysong.com/" onClick="javascript:openUrl('http://tinysong.com/');">Tinysong</a></h1>
+
 		<form method="GET" action="javascript:findSongs();">
 			<fieldset>
 				<input type="text" name="query" id="query" value="">
