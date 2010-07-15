@@ -60,11 +60,6 @@
 		}
 		</style>
 
-		<script type="text/javascript" src="http://tinysong.comwebincludes/js/jquery/zeroclipboard.js"></script>
-		<script type="text/javascript">
-		ZeroClipboard.setMoviePath('http://tinysong.com/webincludes/swf/ZeroClipboard.swf');
-		</script>
-
 		<script type="text/javascript">
 		// Tinysong API URL
 		var tinysongUrl = 'http://tinysong.com/s/%s?format=json';
@@ -128,18 +123,8 @@
 				container.innerHTML += '<p>' +
 						'<a href="' + result.Url + '" onclick="javascript:openUrl(\'' + result.Url + '\');">' + result.SongName + '</a>' +
 						' by <strong>' + result.ArtistName + '</strong><br>' +
-						'<a href="#" id="clip-' + result.SongID + '">Copy to clipboard</div>' +
 						'<em>' + result.Url + '</em>' +
 						'</p>';
-
-				var clip = new ZeroClipboard.Client();
-				clip.setText(result.Url);
-				clip.setHandCursor(true);
-				clip.glue('clip-' + result.SongID);
-
-				clip.addEventListener('complete', function(client, text) {
-					alert("Copied text to clipboard: " + text);
-				});
 			}
 
 			var inputField = document.getElementById('query');
