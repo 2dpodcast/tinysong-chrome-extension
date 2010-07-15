@@ -19,7 +19,6 @@ var req;
 
 function findSongs() {
 	var query = inputField.val().split(' ').join('+');
-	container.removeClass('error');
 
 	req = new XMLHttpRequest();
 	req.onload = handleResponse;
@@ -34,8 +33,7 @@ function findSongs() {
 
 // Handles parsing errors.
 function handleParsingError(error) {
-	container.addClass('error');
-	container.html('<p>' + error + '</p>');
+	container.html('<p class="error">' + error + '</p>');
 }
 
 // Handles errors during the XMLHttpRequest.

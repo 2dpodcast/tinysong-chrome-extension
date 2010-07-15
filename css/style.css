@@ -1,44 +1,70 @@
-:focus {
-	outline: 0;
-}
+a { color: #5ea4c7; }
+
+a:hover { color: #316680; }
+
+a:active { color: #99c47c; }
 
 body {
+	color: #222;
 	font-family: Helvetica, Arial, sans-serif;
 	overflow: hidden;
 	width: 360px;
 }
 
-em {
-	color: #888;
-}
+em { color: #888; }
 
 fieldset {
-	background: #3E6D6A;
-	border: 5px solid #E2FFFE;
-	margin: 0;
-	padding: 0 5px 0 0;
+	background: #3e6d6a;
+	border: 5px solid #e2fffe;
+	margin: 0 5px;
+	overflow: hidden;
+	padding: 5px;
 	-webkit-border-radius: 5px;
-	-webkit-box-shadow: 0 1px 2px #333;
+	-webkit-box-shadow: 0 1px 2px #adadad;
+}
+
+fieldset > a {
+	background: url(../img/magnifier.png) no-repeat center center;
+	border: 0;
+	display: block;
+	float: right;
+	height: 20px;
+	margin: 0;
+	padding: 0;
+	text-indent: -999em;
+	width: 20px;
 }
 
 h1 {
+	background: url(../img/header-lightofgod.png) no-repeat scroll center top transparent;
 	margin: 0;
-	padding: 0;
+	padding-top: 5px;
 }
 
 h1 > a {
-	background: url(../img/logo-small.png) no-repeat center center;
+	background: url(../img/logo.png) no-repeat center center;
 	display: block;
+	height: 27px;
+	margin: 0 auto;
+	padding: 9px 10px;
 	text-indent: -999em;
+	width: 111px;
+}
+
+header {
+	background: #c0f3f2 url(../img/header-gradient.png) repeat-x right bottom;
+	padding-bottom: 9px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
 }
 
 input[type=text] {
-	background: #3E6D6A url(../img/magnifier.png) no-repeat right center;
+	background: #3e6d6a;
 	border: 0;
 	color: #fff;
+	float: left;
 	font-size: 12px;
-	padding: 5px;
-	width: 330px;
+	width: 300px;
 }
 
 li {
@@ -59,20 +85,35 @@ p {
 	line-height: 18px;
 }
 
+section {
+	background: #fff url(../img/header-clouds.png) no-repeat center top;
+	padding-top: 9px;
+}
+
 ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
 
-.error {
-	background: #fee3e3;
-	color: #cb4343;
+.error,
+.message {
 	margin-top: 10px;
 	padding: 10px 20px;
+	text-align: center;
 	-webkit-border-radius: 5px;
 }
 
-.error p {
-	margin: 0;
+.error {
+	background: #fee3e3;
+	color: #cc4343;
+}
+
+.message {
+	background: #dffbe5;
+	color: #2e5435;
+}
+
+:focus {
+	outline: 0;
 }
