@@ -1,7 +1,7 @@
 {
-	"name": "Tinysong",
-	"version": "1.0.3dev",
-	"description": "Create music links that make it easy to share music for free with your friends.",
+	"name": "Tinysong for Chrome",
+	"version": "1.0.3",
+	"description": "Create short links to any song on http://grooveshark.com/ to share music with your friends.",
 	"icons": {
 		"16": "img/icon16.png",
 		"48": "img/icon48.png"
