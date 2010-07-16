@@ -1,8 +1,9 @@
 # CHANGELOG
 
-## 1.0.3dev (July 15th, 2010)
+## 1.0.3 (July 16th, 2010)
 
 * limited results to five songs
+* Renamed to avoid confusion in Extension Gallery
 
 
 ## 1.0.2 (July 15th, 2010)
