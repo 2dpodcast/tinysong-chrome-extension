@@ -2,6 +2,8 @@
 
 Create music links that make it easy to share music for free with your friends. The Tinysong Chrome Extension helps you find short URLs for sharing songs online directly from Google Chrome.
 
+By default, all links will be opened in Grooveshark Desktop (gs://). This can be changed in the extension's settings.
+
 
 ## Installation
 
