@@ -13,16 +13,16 @@
 		},
 
 		dom: {
-			container: '#popup > section',
+			container: 'section',
 			header: {
 				logo: 'header > h1 > a'
 			},
 			search: {
-				form: '#popup > header > form',
-				input: '#popup > header > form > fieldset > input'
+				form: 'header > form',
+				input: 'header > form > fieldset > input'
 			},
 			song: {
-				play: '#popup > section > ul > li > a.play'
+				play: 'section > ul > li > a.play'
 			}
 		},
 

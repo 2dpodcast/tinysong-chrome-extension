@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.1.1 (July 17th, 2010)
+
+* JavaScript refactoring
+* Added TODOs
+
+
 ## 1.1.0 (July 17th, 2010)
 
 * Added support for Grooveshark Desktop (gs://)
