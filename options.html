@@ -1,0 +1,70 @@
+<html>
+	<head>
+		<title>Tinysong for Chrome Options</title>
+
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+
+		<script type="text/javascript">
+		// Saves options to localStorage.
+		function saveOptions() {
+			var select = document.getElementById('player');
+			var player = select.children[select.selectedIndex].value;
+			localStorage['player'] = player;
+
+			// Update status to let user know options were saved.
+			var status = document.getElementById('status');
+			status.innerHTML = 'Options saved.';
+			setTimeout(function() {
+				status.innerHTML = '';
+			}, 750);
+		}
+
+		// Restores select box state to saved value from localStorage.
+		function restoreOptions() {
+			var player = localStorage['player'];
+			console.log('player: ' + player);
+
+			if (!player) {
+				return;
+			}
+
+			var select = document.getElementById('player');
+			for (var i = 0; i < select.children.length; i++) {
+				var child = select.children[i];
+
+				if (child.value == player) {
+					child.selected = 'true';
+					break;
+				}
+			}
+		}
+		</script>
+	</head>
+
+	<body id="options" onload="javascript:restoreOptions()">
+		<header>
+			<h1>
+				<a href="http://tinysong.com/" onClick="openUrl('http://tinysong.com/);">Tinysong</a>
+			</h1>
+		</header>
+
+		<section id="tinysong">
+			<h2>Settings</h2>
+
+			<form method="POST" action="javascript:saveOptions();">
+				<fieldset>
+					<div>
+						<label for="player">Default player:</label>
+
+						<select id="player">
+	 						<option value="desktop">Grooveshark Desktop</option>
+	 						<option value="web">Grooveshark Web</option>
+						</select>
+					</div>
+
+					<input type="submit" value="Save"> <span id="status"></span>
+				</fieldset>
+			</form>
+		</section><!-- #tinysong -->
+	</body><!-- #options -->
+</html>

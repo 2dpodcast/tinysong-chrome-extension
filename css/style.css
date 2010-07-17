@@ -7,13 +7,26 @@ a:active { color: #99c47c; }
 body {
 	color: #222;
 	font-family: Helvetica, Arial, sans-serif;
-	overflow: hidden;
 	width: 360px;
 }
 
-em { color: #888; }
+em {
+	color: #888;
+	font-style: normal;
+}
+
+#options > form > fieldset {
+	border: 0;
+	padding: 0;
+}
 
 fieldset {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+#popup > header > form > fieldset {
 	background: #3e6d6a;
 	border: 5px solid #e2fffe;
 	margin: 0 5px;
@@ -23,7 +36,7 @@ fieldset {
 	-webkit-box-shadow: 0 1px 2px #adadad;
 }
 
-fieldset > a {
+#popup > header > form > fieldset > a {
 	background: url(../img/magnifier.png) no-repeat center center;
 	border: 0;
 	display: block;
@@ -33,6 +46,22 @@ fieldset > a {
 	padding: 0;
 	text-indent: -999em;
 	width: 20px;
+}
+
+#options > header {
+	padding-bottom: 0;
+}
+
+#options > section {
+	background: url(../img/header-clouds-transparent.png) no-repeat center top;
+	padding-top: 9px;
+	position: relative;
+	top: -9px;
+}
+
+footer {
+	background: rgba(255,0,0,0.4);
+	font-size: 8px;
 }
 
 h1 {
@@ -51,14 +80,21 @@ h1 > a {
 	width: 111px;
 }
 
+h2 {
+	font-size: 15px;
+	line-height: 18px;
+	margin-bottom: 0;
+}
+
 header {
 	background: #c0f3f2 url(../img/header-gradient.png) repeat-x right bottom;
 	padding-bottom: 9px;
+	position: relative;
 	-webkit-border-top-left-radius: 5px;
 	-webkit-border-top-right-radius: 5px;
 }
 
-input[type=text] {
+#popup > header > form > fieldset > input[type=text] {
 	background: #3e6d6a;
 	border: 0;
 	color: #fff;
@@ -67,12 +103,18 @@ input[type=text] {
 	width: 300px;
 }
 
+label {
+	font-size: 12px;
+	line-height: 18px;
+	margin-right: 10px;
+}
+
 li {
 	border-bottom: 1px solid #ccc;
 	font-size: 12px;
 	line-height: 18px;
 	margin: 0;
-	padding: 9px 0 8px;
+	padding: 5px 0 4px;
 }
 
 li:last-child {
@@ -88,6 +130,10 @@ p {
 section {
 	background: #fff url(../img/header-clouds.png) no-repeat center top;
 	padding-top: 9px;
+}
+
+span {
+	font-size: 10px;
 }
 
 ul {
@@ -112,6 +158,26 @@ ul {
 .message {
 	background: #dffbe5;
 	color: #2e5435;
+}
+
+.play {
+	background: url(/img/play.png) no-repeat scroll transparent;
+	background-position: 0 -29px;
+	cursor: pointer;
+	display: block;
+	float: left;
+	height: 29px;
+	margin-right: 10px;
+	text-indent: -999em;
+	width: 29px;
+}
+
+.play:hover {
+	background-position: right top;
+}
+
+.play:active {
+	background-position: 0 -58px;
 }
 
 :focus {

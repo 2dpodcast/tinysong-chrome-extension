@@ -1,18 +1,20 @@
 {
 	"name": "Tinysong for Chrome",
-	"version": "1.0.3",
-	"description": "Create short links to any song on http://grooveshark.com/ to share music with your friends.",
+	"version": "1.1.0",
+	"description": "Create short links to any song on Grooveshark (http://grooveshark.com/) to share music with your friends.",
 	"icons": {
 		"16": "img/icon16.png",
 		"48": "img/icon48.png"
 	},
 	"browser_action": {
-		"default_title": "Tinysong",
+		"default_title": "Tinysong for Chrome",
 		"default_icon": "img/icon.png",
 		"default_popup": "popup.html"
 	},
+	"options_page": "options.html",
 	"permissions": [
 		"tabs",
+		"http://gsuser.com/*",
 		"http://tinysong.com/*"
 	]
 }
