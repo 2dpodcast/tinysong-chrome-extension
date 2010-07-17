@@ -1,109 +1,138 @@
-$(document).ready(function() {
-	container = $('#tinysong');
+(function() {
+	window.tinysong = {
+		api: {
+			gsuser: 'http://gsuser.com/getSongTokenFromBase62/%s',
+			tinysong: 'http://tinysong.com/s/%s?format=json&limit=5'
+		},
 
-	inputField = $('#query');
-	inputField.focus();
-});
+		constants: {
+			player: {
+				desktop: 'desktop',
+				web: 'web'
+			}
+		},
 
-// Tinysong API URL
-var tinysongUrl = 'http://tinysong.com/s/%s?format=json&limit=5';
+		dom: {
+			container: '#popup > section',
+			header: {
+				logo: 'header > h1 > a'
+			},
+			search: {
+				form: '#popup > header > form',
+				input: '#popup > header > form > fieldset > input'
+			},
+			song: {
+				play: '#popup > section > ul > li > a.play'
+			}
+		},
 
-// contains results/errors
-var container;
+		state: {
+			response: null,
+			result: null,
+			query: ''
+		},
 
-// query input field
-var inputField;
+		buildResponse: function() {
+			this.state.response = '<ul>';
 
-// the XMLHttpRequest object
-var req;
+			if (this.state.result.length != 0) {
+				for (i in this.state.result) {
+					var result = (this.state.result)[i];
 
-function findSongs() {
-	var query = inputField.val().split(' ').join('+');
+					// available attributes: Url, SongID, SongName, ArtistID, ArtistName, AlbumID, AlbumName
 
-	req = new XMLHttpRequest();
-	req.onload = handleResponse;
-	req.onerror = handleError;
-	req.open('GET', tinysongUrl.replace('%s', query), true);
-	req.send(null);
+					this.state.response += '<li>' +
+							'<a href="' + result.Url + '" class="play">Play</a>' +
+							result.SongName + ' - ' + result.ArtistName + '<br>' +
+							'<em>' + result.Url + '</em>' +
+							'</li>';
+				}
+				this.state.response += '</ul>';
+			} else {
+				this.state.response = '<p class="error"><strong>We didn\'t find any songs!</strong> Try searching another?</p>';
+			}
 
-	// give focus to search field
-	inputField.focus();
-	inputField.select();
-}
+			$(this.dom.container).html(this.state.response);
 
-// Handles parsing errors.
-function handleParsingError(error) {
-	container.html('<p class="error">' + error + '</p>');
-}
+			$(this.dom.search.input).focus();
+			$(this.dom.search.input).select();
+		},
 
-// Handles errors during the XMLHttpRequest.
-function handleError() {
-	handleParsingError('Failed to fetch URLs.');
-}
+		getGsUrl: function(tinysongUrl) {
+			var tinysongToken = tinysongUrl.split('/')[3];
+			var gsUrl = '';
 
-// Handles parsing the data we got back from XMLHttpRequest.
-function handleResponse() {
-	var response = JSON.parse(req.responseText);
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', (this.api.gsuser).replace('%s', tinysongToken), false);
+			xhr.onreadystatechange = function() {
+				if (this.readyState == 4) {
+					if (this.status == 200) {
+						gsUrl = 'gs://s/~/' + this.responseText;
+					}
+				}
+			};
+			xhr.send(null);
 
-	if (!response.length) {
-		handleParsingError(
-			'<strong>We didn\'t find any songs!</strong> Try searching another?');
-		return;
-	}
+			return gsUrl;
+		},
 
-	buildResult(response);
-}
+		init: function() {
+			$(this.dom.search.input).focus();
+			this.initEvents();
+		},
 
-function buildResult(response) {
-	var resultHTML = '<ul>';
+		initEvents: function() {
+			$(this.dom.search.form).submit(function(e) {
+				window.tinysong.state.query = $(window.tinysong.dom.search.input).val().split(' ').join('+');
+				window.tinysong.search($(window.tinysong.state.query).val());
+				// prevents further propagation of the current event
+				e.stopPropagation();
+				return false;
+			});
 
-	for (i in response) {
-		var result = response[i];
+			$(this.dom.song.play).live('click', function(e) {
+				if (localStorage.player == window.tinysong.constants.player.desktop) {
+					window.tinysong.openUrl(window.tinysong.getGsUrl(this.toString()));
+				} else if (localStorage.player == window.tinysong.constants.player.web) {
+					window.tinysong.openUrl(this.toString());
+				}
 
-		// available attributes:
-		//   Url, SongID, SongName, ArtistID, ArtistName, AlbumID, AlbumName
+				return false;
+			});
 
-		resultHTML += '<li>' +
-				'<a href="' + result.Url + '" class="play" onclick="javascript:openSong(\'' + result.Url + '\');">Play</a>' +
-				result.SongName + ' - ' + result.ArtistName + '<br>' +
-				'<em>' + result.Url + '</em>' +
-				'</li>';
-	}
+			$(this.dom.header.logo).live('click', function() {
+				window.tinysong.openUrl(this.toString());
+				return false;
+			});
+		},
 
-	container.html(resultHTML + '</ul>');
-}
+		openUrl: function(url) {
+			// only allow http, https and gs URLs.
+			if (url.indexOf('http:') != 0 && url.indexOf('https:') != 0 && url.indexOf('gs:') != 0) {
+				return;
+			}
 
-function getGsUrl(tinysongUrl) {
-	var tinysongToken = tinysongUrl.split("/")[3];
-	var gsUrl = '';
+			// open url in new tab
+			chrome.tabs.create({ url: url });
+		},
 
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', 'http://gsuser.com/getSongTokenFromBase62/' + tinysongToken, false);
-	xhr.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			gsUrl = 'gs://s/~/' + xhr.responseText;
+		search: function() {
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', (this.api.tinysong).replace('%s', this.state.query), false);
+			xhr.onreadystatechange = function() {
+				if (this.readyState == 4) {
+					if (this.status == 200) {
+						window.tinysong.state.result = JSON.parse(this.responseText);
+					}
+				} 
+			};
+			xhr.send(null);
+
+			this.buildResponse();
 		}
 	};
-	xhr.send();
 
-	return gsUrl;
-}
-
-// Open |url| in Grooveshark Desktop or new tab depending on settings.
-function openSong(url) {
-	if (localStorage.player == 'desktop') {
-		openUrl(getGsUrl(url));
-	} else if (localStorage.player == 'web') {
- 		openUrl(url);
-	}
-}
-
-// Open |url| in a new tab.
-function openUrl(url) {
-	// Only allow http, https and gs URLs.
-	if (url.indexOf('http:') != 0 && url.indexOf('https:') != 0 && url.indexOf('gs:') != 0) {
-		return;
-	}
-
-	chrome.tabs.create({ url: url });
-}
+	$(document).ready(function() {
+		window.tinysong.init();
+	});
+})();
