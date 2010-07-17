@@ -1,8 +1,18 @@
-a { color: #5ea4c7; }
+:focus {
+	outline: 0;
+}
 
-a:hover { color: #316680; }
+a {
+	color: #5ea4c7;
+}
 
-a:active { color: #99c47c; }
+a:active {
+	color: #99c47c;
+}
+
+a:hover {
+	color: #316680;
+}
 
 body {
 	color: #222;
@@ -15,48 +25,10 @@ em {
 	font-style: normal;
 }
 
-#options > form > fieldset {
-	border: 0;
-	padding: 0;
-}
-
 fieldset {
 	border: 0;
 	margin: 0;
 	padding: 0;
-}
-
-#popup > header > form > fieldset {
-	background: #3e6d6a;
-	border: 5px solid #e2fffe;
-	margin: 0 5px;
-	overflow: hidden;
-	padding: 5px;
-	-webkit-border-radius: 5px;
-	-webkit-box-shadow: 0 1px 2px #adadad;
-}
-
-#popup > header > form > fieldset > a {
-	background: url(../img/magnifier.png) no-repeat center center;
-	border: 0;
-	display: block;
-	float: right;
-	height: 20px;
-	margin: 0;
-	padding: 0;
-	text-indent: -999em;
-	width: 20px;
-}
-
-#options > header {
-	padding-bottom: 0;
-}
-
-#options > section {
-	background: url(../img/header-clouds-transparent.png) no-repeat center top;
-	padding-top: 9px;
-	position: relative;
-	top: -9px;
 }
 
 footer {
@@ -64,20 +36,10 @@ footer {
 	font-size: 8px;
 }
 
-h1 {
-	background: url(../img/header-lightofgod.png) no-repeat scroll center top transparent;
-	margin: 0;
-	padding-top: 5px;
-}
-
-h1 > a {
-	background: url(../img/logo.png) no-repeat center center;
-	display: block;
-	height: 27px;
-	margin: 0 auto;
-	padding: 9px 10px;
-	text-indent: -999em;
-	width: 111px;
+form > fieldset > div > label {
+	font-size: 12px;
+	line-height: 18px;
+	margin-right: 10px;
 }
 
 h2 {
@@ -94,32 +56,20 @@ header {
 	-webkit-border-top-right-radius: 5px;
 }
 
-#popup > header > form > fieldset > input[type=text] {
-	background: #3e6d6a;
-	border: 0;
-	color: #fff;
-	float: left;
-	font-size: 12px;
-	width: 300px;
-}
-
-label {
-	font-size: 12px;
-	line-height: 18px;
-	margin-right: 10px;
-}
-
-li {
-	border-bottom: 1px solid #ccc;
-	font-size: 12px;
-	line-height: 18px;
+header > h1 {
+	background: url(../img/header-lightofgod.png) no-repeat scroll center top transparent;
 	margin: 0;
-	padding: 5px 0 4px;
+	padding-top: 5px;
 }
 
-li:last-child {
-	border-bottom: 0;
-	padding-bottom: 0;
+header > h1 > a {
+	background: url(../img/logo.png) no-repeat center center;
+	display: block;
+	height: 27px;
+	margin: 0 auto;
+	padding: 9px 10px;
+	text-indent: -999em;
+	width: 111px;
 }
 
 p {
@@ -132,14 +82,62 @@ section {
 	padding-top: 9px;
 }
 
+section > ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+section > ul > li {
+	border-bottom: 1px solid #ccc;
+	font-size: 12px;
+	line-height: 18px;
+	margin: 0;
+	padding: 5px 0 4px;
+}
+
+section > ul > li:last-child {
+	border-bottom: 0;
+	padding-bottom: 0;
+}
+
 span {
 	font-size: 10px;
 }
 
-ul {
-	list-style: none;
-	margin: 0;
+#options > form > fieldset {
+	border: 0;
 	padding: 0;
+}
+
+#options > header {
+	padding-bottom: 0;
+}
+
+#options > section {
+	background: url(../img/header-clouds-transparent.png) no-repeat center top;
+	padding-top: 9px;
+	position: relative;
+	top: -9px;
+}
+
+#popup > header > form > fieldset {
+	background: #3e6d6a url(../img/magnifier.png) no-repeat right center;
+	border: 5px solid #e2fffe;
+	margin: 0 5px;
+	overflow: hidden;
+	padding: 5px;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: 0 1px 2px #adadad;
+}
+
+#popup > header > form > fieldset > input[type=text] {
+	background: #3e6d6a;
+	border: 0;
+	color: #fff;
+	float: left;
+	font-size: 12px;
+	width: 305px;
 }
 
 .error,
@@ -178,8 +176,4 @@ ul {
 
 .play:active {
 	background-position: 0 -58px;
-}
-
-:focus {
-	outline: 0;
 }

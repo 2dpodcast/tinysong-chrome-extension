@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Tinysong for Chrome</title>
+
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 
 		<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
@@ -9,22 +12,19 @@
 
 	<body id="popup">
 		<header>
-			<h1>
-				<a href="http://tinysong.com/" onClick="openUrl('http://tinysong.com/);">Tinysong</a>
-			</h1>
+			<h1><a href="http://tinysong.com/">Tinysong</a></h1>
 
-			<form method="GET" action="javascript:findSongs();">
+			<form action="">
 				<fieldset>
-					<input type="text" name="query" id="query" value="">
-					<a href="#" onclick="javascript:findSongs();">Search</a>
+					<input type="text" name="query" value="">
 				</fieldset>
 			</form>
 		</header>
 
-		<section id="tinysong">
+		<section>
 			<p class="message">
 				<strong>Tinysong</strong> is perfect for tweetin' songs.
 			</p>
-		</section><!-- #tinysong -->
-	</body><!-- popup -->
+		</section>
+	</body>
 </html>
