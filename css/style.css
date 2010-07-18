@@ -88,6 +88,7 @@ section > ul > li {
 	font-size: 12px;
 	line-height: 18px;
 	margin: 0;
+	overflow: hidden;
 	padding: 5px 0 4px;
 }
 
@@ -96,8 +97,21 @@ section > ul > li:last-child {
 	padding-bottom: 0;
 }
 
+section > ul > li > div {
+/*	background: rgba(255,0,0,0.4);*/
+	float: right;
+	width: 320px
+}
+
 span {
 	font-size: 10px;
+}
+
+#clipboard {
+	/* field has to be hidden, but both visibility: hidden and display: none break .focus() */
+	position: absolute;
+	right: -999em;
+	top: -999em;
 }
 
 #options > form > fieldset {
@@ -135,6 +149,12 @@ span {
 	width: 305px;
 }
 
+.copy {
+	background: url(../img/paperclip.png) no-repeat left center;
+	float: right;
+	padding-left: 16px;
+}
+
 .error,
 .message {
 	margin-top: 10px;
@@ -160,7 +180,6 @@ span {
 	display: block;
 	float: left;
 	height: 29px;
-	margin-right: 10px;
 	text-indent: -999em;
 	width: 29px;
 }
@@ -171,4 +190,8 @@ span {
 
 .play:active {
 	background-position: 0 -58px;
+}
+
+.success {
+	background-image: url(../img/success.png);
 }

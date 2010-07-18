@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.2.0 (July 18th, 2010)
+
+* Added "copy to clipboard" functionality (Chrome 5 only)
+
+
 ## 1.1.1 (July 17th, 2010)
 
 * JavaScript refactoring

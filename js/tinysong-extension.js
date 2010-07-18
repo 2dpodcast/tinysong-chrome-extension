@@ -13,7 +13,9 @@
 		},
 
 		dom: {
+			clipboard: '#clipboard',
 			container: 'section',
+			footer: 'footer',
 			header: {
 				logo: 'header > h1 > a'
 			},
@@ -22,7 +24,32 @@
 				input: 'header > form > fieldset > input'
 			},
 			song: {
-				play: 'section > ul > li > a.play'
+				copy: {
+					link: 'section > ul > li > div > a.copy',
+					success: 'success'
+				}
+			}
+		},
+
+		message: {
+			clipboard: {
+				link: 'Copy to clipboard.',
+				success: 'Copied!'
+			},
+			search: {
+				result: {
+					empty: '<strong>We didn\'t find any songs!</strong> Try searching another?'
+				}
+			},
+			song: {
+				play: 'Play'
+			}
+		},
+
+		user: {
+			browser: {
+				majorVersion: null,
+				version: null
 			}
 		},
 
@@ -42,20 +69,32 @@
 					// available attributes: Url, SongID, SongName, ArtistID, ArtistName, AlbumID, AlbumName
 
 					this.state.response += '<li>' +
-							'<a href="' + result.Url + '" class="play">Play</a>' +
+							'<a href="' + result.Url + '" class="play">' + window.tinysong.message.song.play + '</a>' +
+							'<div>' +
 							result.SongName + ' - ' + result.ArtistName + '<br>' +
-							'<em>' + result.Url + '</em>' +
+							'<em>' + result.Url + '</em>';
+
+					if (this.hasCopyToClipboard()) {
+						this.state.response += ' <a href="' + result.Url + '" class="copy">' + window.tinysong.message.clipboard.link + '</a>';
+					}
+
+					this.state.response += '</div>' +
 							'</li>';
 				}
 				this.state.response += '</ul>';
 			} else {
-				this.state.response = '<p class="error"><strong>We didn\'t find any songs!</strong> Try searching another?</p>';
+				this.state.response = '<p class="error">' + window.tinysong.message.search.result.empty + '</p>';
 			}
 
 			$(this.dom.container).html(this.state.response);
 
 			$(this.dom.search.input).focus();
 			$(this.dom.search.input).select();
+		},
+
+		getBrowserVersion: function() {
+			this.user.browser.version = navigator.appVersion.match(/Chrome\/(.*?)\s/)[1];
+			this.user.browser.majorVersion = this.user.browser.version.split('.')[0];
 		},
 
 		getGsUrl: function(tinysongUrl) {
@@ -76,8 +115,17 @@
 			return gsUrl;
 		},
 
-		init: function() {
+		hasCopyToClipboard: function() {
+			return this.user.browser.majorVersion == '5'
+		},
+
+		highlightInputField: function() {
 			$(this.dom.search.input).focus();
+		},
+
+		init: function() {
+			this.highlightInputField();
+			this.getBrowserVersion();
 			this.initEvents();
 		},
 
@@ -87,6 +135,22 @@
 				window.tinysong.search($(window.tinysong.state.query).val());
 				// prevents further propagation of the current event
 				e.stopPropagation();
+				return false;
+			});
+
+			$(this.dom.song.copy.link).live('click', function(e) {
+				$(window.tinysong.dom.clipboard).val($(this).attr('href'));
+				$(window.tinysong.dom.clipboard).focus();
+				$(window.tinysong.dom.clipboard).select();
+
+				document.execCommand('Copy');
+
+				$(this).text(window.tinysong.message.clipboard.success);
+				$(this).addClass(window.tinysong.dom.song.copy.success);
+				$(window.tinysong.dom.clipboard).val('');
+
+				window.tinysong.highlightInputField();
+
 				return false;
 			});
 
