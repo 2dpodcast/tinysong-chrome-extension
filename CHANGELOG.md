@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.2.1 (July 18th, 2010)
+
+* Added autoplay to URLs opened in Grooveshark Desktop
+* fixed bug that prevented play-button to do anything
+
+
 ## 1.2.0 (July 18th, 2010)
 
 * Added "copy to clipboard" functionality (Chrome 5 only)

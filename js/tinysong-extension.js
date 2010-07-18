@@ -1,6 +1,7 @@
 (function() {
 	window.tinysong = {
 		api: {
+			grooveshark: 'gs://s/~/%s/play',
 			gsuser: 'http://gsuser.com/getSongTokenFromBase62/%s',
 			tinysong: 'http://tinysong.com/s/%s?format=json&limit=5'
 		},
@@ -27,7 +28,8 @@
 				copy: {
 					link: 'section > ul > li > div > a.copy',
 					success: 'success'
-				}
+				},
+				play: '.play'
 			}
 		},
 
@@ -106,7 +108,7 @@
 			xhr.onreadystatechange = function() {
 				if (this.readyState == 4) {
 					if (this.status == 200) {
-						gsUrl = 'gs://s/~/' + this.responseText;
+						gsUrl = (window.tinysong.api.grooveshark).replace('%s', this.responseText);
 					}
 				}
 			};

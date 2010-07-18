@@ -4,5 +4,6 @@
 * add loading animation
 * document tinysong-extension.js
 * add error message in case of missing network connection
-* add autoplay-feature to settings
-* fix pixels added by hidden #clipboard element
+* fix pixels added by hidden #clipboard element (move to background page?)
+* add autocomplete feature
+* add Google Analytics
