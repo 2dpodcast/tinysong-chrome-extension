@@ -12,11 +12,11 @@ You can install the extension via the [Google Chrome Extensions Gallery][gallery
 
 ## Known issues
 
-As of right now, a "copy to clipboard" functionality cannot be provided due to restrictions in Chrome's security policy.
+The "copy to clipboard" functionality is only available in Chrome 5 right now and cannot be ported to work in Chrome 6 yet.
 
-Google does offer an experimental API to copy elements to the clipboard, but use of this API would only work if users start their browsers with the __--enable-experimental-extension-apis__ flag. Furthermore, extensions using experimental APIs can't be uploaded to the extension gallery.
+Google does offer an experimental API to copy elements to the clipboard which could it to work in Chrome 6, but use of this API would only work if users start their browsers with the __--enable-experimental-extension-apis__ flag. Furthermore, extensions using experimental APIs can't be uploaded to the extension gallery.
 
-Once this API moves from experimental to supported, "copy to clipboard" will be added.
+Once this API moves from experimental to supported, "copy to clipboard" will be added to support future Versions of Chrome.
 
 
 ## Problems?
