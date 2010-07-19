@@ -2,7 +2,7 @@
 
 ## 1.3.1 (July 19th, 2010)
 
-* Removed TODO.md, creating [issues][http://github.com/dhabersack/tinysong-chrome-extension/issues] on GitHub instead
+* Removed TODO.md, creating [issues][issues] on GitHub instead
 
 
 ## 1.3.0 (July 19th, 2010)
@@ -55,3 +55,6 @@
 ## 1.0.0 (July 14th, 2010)
 
 * Initial release
+
+
+[issues]: http://github.com/dhabersack/tinysong-chrome-extension/issues
