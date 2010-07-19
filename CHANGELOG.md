@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.3.1 (July 19th, 2010)
+
+* Removed TODO.md, creating [issues][http://github.com/dhabersack/tinysong-chrome-extension/issues] on GitHub instead
+
+
 ## 1.3.0 (July 19th, 2010)
 
 * Added autocomplete feature
