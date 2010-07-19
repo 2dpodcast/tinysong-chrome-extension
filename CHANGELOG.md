@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.3.0 (July 19th, 2010)
+
+* Added autocomplete feature
+
+
 ## 1.2.1 (July 18th, 2010)
 
 * Added autoplay to URLs opened in Grooveshark Desktop

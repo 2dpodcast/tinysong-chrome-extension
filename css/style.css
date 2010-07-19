@@ -67,6 +67,10 @@ header > h1 > a {
 	width: 111px;
 }
 
+html {
+	overflow: visible;
+}
+
 p {
 	font-size: 12px;
 	line-height: 18px;
@@ -195,3 +199,31 @@ span {
 .success {
 	background-image: url(../img/success.png);
 }
+
+.ui-autocomplete {
+	background: #fff;
+	border-color: #7f9db9;
+	border-style: solid;
+	border-width: 1px;
+	list-style: none;
+	padding: 0;
+	position: absolute;
+	top: 4px;
+	width: 305px;
+}
+
+.ui-autocomplete > li {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+.ui-autocomplete > li > a {
+	color: inherit;
+	display: block;
+}
+
+.ui-autocomplete > li > a#ui-active-menuitem {
+	background: #3875d7;
+	color: #fff;
+}
+
