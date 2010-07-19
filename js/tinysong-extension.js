@@ -20,7 +20,9 @@
 		},
 
 		dom: {
-			autocomplete: '.ui-autocomplete',
+			autocomplete: {
+				list: '.ui-autocomplete'
+			},
 			clipboard: '#clipboard',
 			container: 'section',
 			footer: 'footer',
@@ -140,6 +142,35 @@
 			return gsUrl;
 		},
 
+		getUniquePreviousSearches: function() {
+			/* remove duplicates from previousSearches */
+			// sort previousSearches alphabetically, case insensitive
+			this.autocomplete.previousSearches.sort(function(a, b) {
+				a = a.toLowerCase();
+				b = b.toLowerCase();
+				if (a > b) {
+					return 1;
+				} else if (a < b) {
+					return -1;
+				}
+				return 0;
+			});
+
+			var uniquePreviousSearches = [];
+			var previousValue = "";
+
+			for (i in this.autocomplete.previousSearches) {
+				var currentValue = this.autocomplete.previousSearches[i];
+				if (currentValue.toLowerCase() != previousValue.toLowerCase()) {
+					uniquePreviousSearches.push(currentValue);
+				}
+
+				previousValue = currentValue;
+			}
+
+			this.autocomplete.previousSearches = uniquePreviousSearches;
+		},
+
 		hasCopyToClipboard: function() {
 			return this.user.browser.majorVersion == '5'
 		},
@@ -171,8 +202,13 @@
 		},
 
 		initEvents: function() {
+			$(this.dom.header.logo).live('click', function() {
+				window.tinysong.openUrl(this.toString());
+				return false;
+			});
+
 			$(this.dom.search.form).submit(function(e) {
-				$(window.tinysong.dom.autocomplete).css('display', 'none');
+				$(window.tinysong.dom.autocomplete.list).css('display', 'none');
 
 				window.tinysong.state.query = $(window.tinysong.dom.search.input).val().split(' ').join('+');
 				window.tinysong.search($(window.tinysong.state.query).val());
@@ -204,11 +240,6 @@
 					window.tinysong.openUrl(this.toString());
 				}
 
-				return false;
-			});
-
-			$(this.dom.header.logo).live('click', function() {
-				window.tinysong.openUrl(this.toString());
 				return false;
 			});
 		},
@@ -248,31 +279,7 @@
 
 			this.autocomplete.previousSearches.push($(window.tinysong.dom.search.input).val());
 
-			/* remove duplicates from previousSearches */
-			// sort previousSearches alphabetically, case insensitive
-			this.autocomplete.previousSearches.sort(function(a, b) {
-				a = a.toLowerCase();
-				b = b.toLowerCase();
-				if (a > b) {
-					return 1;
-				} else if (a < b) {
-					return -1;
-				}
-				return 0;
-			});
-
-			var uniquePreviousSearches = [];
-			var previousValue = "";
-
-			for (i in this.autocomplete.previousSearches) {
-				var currentValue = this.autocomplete.previousSearches[i];
-				if (currentValue.toLowerCase() != previousValue.toLowerCase()) {
-					uniquePreviousSearches.push(currentValue);
-				}
-
-				previousValue = currentValue;
-			}
-			this.autocomplete.previousSearches = uniquePreviousSearches;
+			this.getUniquePreviousSearches();
 
 			localStorage.previousSearches = JSON.stringify(this.autocomplete.previousSearches);
 			this.reloadAutocomplete();
