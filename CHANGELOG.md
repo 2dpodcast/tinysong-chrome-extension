@@ -1,8 +1,9 @@
 # CHANGELOG
 
-## 1.3.1 (July 19th, 2010)
+## 1.3.1 (July 27th, 2010)
 
 * Removed TODO.md, creating [issues][issues] on GitHub instead
+* Set default player to Grooveshark Web
 
 
 ## 1.3.0 (July 19th, 2010)

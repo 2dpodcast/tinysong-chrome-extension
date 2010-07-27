@@ -31,6 +31,16 @@ fieldset {
 	padding: 0;
 }
 
+footer {
+	border-top: 1px solid #ddd;
+	margin-top: 9px;
+	padding-top: 8px;
+}
+
+footer > a {
+	font-size: 12px;
+}
+
 form > fieldset > div > label {
 	font-size: 12px;
 	line-height: 18px;
@@ -65,10 +75,6 @@ header > h1 > a {
 	padding: 9px 10px;
 	text-indent: -999em;
 	width: 111px;
-}
-
-html {
-	overflow: visible;
 }
 
 p {

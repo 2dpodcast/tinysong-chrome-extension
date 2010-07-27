@@ -25,7 +25,12 @@
 			},
 			clipboard: '#clipboard',
 			container: 'section',
-			footer: 'footer',
+			footer: {
+				footer: 'footer',
+				settings: {
+					link: 'footer > a'
+				}
+			},
 			header: {
 				logo: 'header > h1 > a'
 			},
@@ -207,6 +212,12 @@
 				return false;
 			});
 
+			$(this.dom.footer.settings.link).click(function() {
+				// open url in new tab
+				chrome.tabs.create({ url: this.toString() });
+				return false;
+			});
+
 			$(this.dom.search.form).submit(function(e) {
 				$(window.tinysong.dom.autocomplete.list).css('display', 'none');
 
@@ -234,6 +245,10 @@
 			});
 
 			$(this.dom.song.play).live('click', function(e) {
+				if (!localStorage.player) {
+					localStorage.player = window.tinysong.constants.player.web;
+				}
+
 				if (localStorage.player == window.tinysong.constants.player.desktop) {
 					window.tinysong.openUrl(window.tinysong.getGsUrl(this.toString()));
 				} else if (localStorage.player == window.tinysong.constants.player.web) {
