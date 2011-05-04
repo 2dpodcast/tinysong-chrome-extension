@@ -1,0 +1,707 @@
+@import 'colors.scss';
+@import 'font-stacks.scss';
+@import 'mixins.scss';
+
+/* Skeletal base stylesheet */
+
+/*
+ * VERTICAL GRID
+ *
+ * The vertical grid is based on a height of 6px. This allows for the use of
+ * line-heights like 12px, 18px, 24px, 30px, etc.
+ *
+ * Sensible font-size and line-height combinations are:
+ *
+ *   font-size  |  line-height (em)  |  line-height (px)  |   10px
+ * -------------+--------------------+--------------------|----------
+ *     10px     |       1.8em        |       18px         |  1em
+ *     12px     |       1.5em        |       18px         |
+ *     15px     |       1.6em        |       24px         |  .625em
+ *     16px     |       1.5em        |       24px         |
+ *     20px     |       1.5em        |       30px         |  .5em
+ *     24px     |       1.5em        |       36px         |
+ *     25px     |       1.44em       |       36px         |  .4em
+ *     28px     |       1.5em        |       42px         |
+ *     30px     |       1.4em        |       42px         |
+ */
+
+/* RESET */
+a, abbr, address, b, blockquote, body, caption, cite, code, dd, del, dfn, div, dl, dt, em, fieldset, form, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, kbd, label, legend, li, object, ol, p, pre, q, samp, small, span, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, ul, var {
+	/*	background: transparent;*/
+	border: 0;
+	font-size: 100%;
+	margin: 0;
+	outline: 0;
+	padding: 0;
+	vertical-align: baseline;
+}
+
+:focus {
+	outline: 0;
+}
+
+a {
+	&:active {
+		position: relative;
+		top: 1px;
+	}
+
+	&:focus {
+		background: $dark-blue;
+		color: $off-white;
+		text-decoration: none;
+	}
+
+	&:hover {
+		color: $light-blue;
+		text-decoration: underline;
+	}
+
+	&:link {
+		color: $dark-blue;
+		text-decoration: none;
+
+		&:focus {
+			color: $off-white;
+		}
+	}
+
+	&:visited {
+		color: $dark-blue;
+		text-decoration: none;
+	}
+}
+
+abbr {
+	border-bottom: 1px dotted $dark-grey;
+	cursor: help;
+	font-variant: normal;
+}
+
+address {
+	font-style: italic;
+}
+
+article {
+	margin-bottom: 1.2em;
+}
+
+aside {
+	float: right;
+	margin-bottom: 1.2em;
+	padding: 0 1em;
+	width: 28em;
+}
+
+b {
+	font-weight: bold;
+}
+
+blockquote {
+	@include border-radius(0 .4em .4em .4em);
+
+	background: $light-grey;
+	color: $dark-grey;
+	font: {
+		family: $font-stack-serif;
+		style: italic;
+	}
+	margin: 0 6em 1.2em;
+	padding: 1.2em 2em;
+
+	> p {
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+}
+
+body {
+	background-color: inherit;
+	color: $off-black;
+	font: 62.5%/1 $font-stack-sans-serif; /* 10px/10px */
+	margin: 0 auto;
+	overflow: hidden;
+	width: 96em;
+}
+
+button,
+input[type="reset"],
+input[type="submit"] {
+	@include background-gradient($off-white, $light-grey);
+	@include border-radius(.125em); /* 2px */
+	@include form-field-border;
+
+	color: $off-black;
+	float: left;
+	font: 1.6em/1.75em $font-stack-sans-serif; /* #/28px */
+	height: 1.75em; /* 28px */
+	margin: 0 .3125em 0 0; /* 0 5px 0 0 */
+	padding: 0 .875em; /* 0 14px */
+
+	&:active {
+		@include background-gradient($light-grey, $off-white);
+
+		border-color: $grey;
+	}
+
+	&:hover {
+		border-color: $grey;
+		cursor: pointer;
+	}
+}
+
+cite {
+	font: {
+		size: 1.2em;
+		style: italic;	
+		weight: bold;
+	}
+	line-height: 1.5em; /* 18px */
+}
+
+code {
+	background: $light-grey;
+	color: $light-red;
+	display: inline-block;
+	font-family: $font-stack-monospace;
+	padding: 0 .2em; /* 0 3px */
+}
+
+del {
+	text-decoration: line-through;
+}
+
+dfn {
+	font-style: italic;
+}
+
+dl {
+	margin-bottom: .6em;
+
+	> dd {
+		font-size: 1.5em;
+		line-height: 1.6em; /* 24px */
+		margin: 0 0 .4em 1em; /* 0 0 6px 15px */
+	}
+
+	> dt {
+		font: {
+			size: 1.5em;
+			weight: bold;
+		}
+		line-height: 1.6em; /* 24px */
+
+		&:after {
+			content: ':';
+		}
+	}
+}
+
+em {
+	font-style: italic;
+}
+
+fieldset {
+	/* TODO check effect of clear: left */
+	clear: left;
+	line-height: 1; /* helps set vertical alignment of radio buttons and checkboxes; probably unnecessary */
+
+	> div {
+		margin-bottom: 1.2em;
+		overflow: hidden;
+		position: relative;
+
+		> input {
+			clear: left;
+			float: left;
+
+			&[type="checkbox"],
+			&[type="radio"] {
+				/* TODO not happy with use of em-values on top of unknown base value */
+				float: left;
+				font-size: 1.6em;
+				height: 1.875em; /* 30px */
+				margin: 0 .625em 0 0; /* 0 10px 0 0 */
+				padding: 0;
+			}
+
+			&[type="color"],
+			&[type="datetime"],
+			&[type="datetime-local"],
+			&[type="email"],
+			&[type="month"],
+			&[type="number"],
+			&[type="password"],
+			&[type="range"],
+			&[type="tel"],
+			&[type="text"],
+			&[type="time"],
+			&[type="url"],
+			&[type="week"] {
+				@include form-field-border;
+				@include border-radius(.125em); /* 2px */
+
+				background: $white;
+				font: 1.6em/1em $font-stack-sans-serif; /* #/16px */
+				height: 1em; /* 16px */
+				margin: 0 .625em 0 0; /* 0 10px 0 0 */
+				padding: .375em .25em; /* 6px 4px */
+				width: 16.875em; /* 270px */
+
+				&:focus {
+					border-color: $light-blue;
+				}
+			}
+		}
+
+		> label {
+			display: block;
+			float: left;
+			font-size: 1.6em;
+			line-height: 1.875em; /* 30px */
+
+			&[data-unit] {
+				&:after {
+					color: #666; /* TODO color */
+					content: attr(data-unit);
+					font-size: .75em; /* 12px */
+					line-height: 2.5em; /* 30px */
+					position: absolute;
+					left: 20em; /* 240px */
+					text-align: right;
+					top: 2.5em; /* 30px */
+					width: 2.5em; /* 30px */
+				}
+
+				+ input[type="text"] {
+					padding-right: 3.0625em; /* 49px */
+					width: 14.0625em; /* 225px */
+				}
+			}
+		}
+
+		> p {
+			clear: left;
+			color: $grey;
+			font-size: 1.2em;
+			line-height: 1.5em; /* 18px */
+			margin-bottom: 0;
+		}
+
+		> select {
+			// TODO style selects
+			clear: left;
+			float: left;
+			margin: 0 .5em 0 0; /* ~5px */
+
+			~ select {
+				clear: none; // only clear first select, following ones will be in line
+			}
+
+			> option {
+				font-size: 1.2em;
+				line-height: 1.5em; /* 18px */
+
+				> optgroup {
+					font-size: 1.2em;
+					line-height: 1.5em; /* 18px */
+				}
+			}
+		}
+
+		> span {
+			float: left;
+			font-size: 1.2em;
+			line-height: 2.5em; /* 30px */
+		}
+
+		> textarea {
+			@include form-field-border;
+			@include border-radius(.125em); /* 2px */
+
+			clear: left;
+			float: left;
+			font: 1.6em/1.5em $font-stack-sans-serif; /* #/24px */
+			margin: 0;
+			padding: .375em .25em; /* 6px 4px */
+			width: 16.875em; /* 270px */
+
+			&:focus {
+				border-color: $light-blue;
+			}
+		}
+	}
+
+	> fieldset {
+		@include border-radius(.2em); /* 2px */
+		border: .1em solid $grey;
+		margin-bottom: 1.2em;
+		padding: .5em .9em 1.1em;
+
+		> div {
+			margin-bottom: 0;
+		}
+
+		> legend {
+			padding: 0 .625em; /* 10px */
+		}
+	}
+
+	> legend {
+		color: $off-black;
+		font: bold 1.6em/1.5em $font-stack-sans-serif; /* #/24px */
+		letter-spacing: .025em;
+	}
+}
+
+footer {
+	padding: .6em 0;
+	margin: 0 auto;
+	overflow: hidden;
+	padding: 0 1em;
+	width: 94em;
+
+	> ol > li {
+		font-size: 1.2em;
+		line-height: 1.5em; /* 18px */
+		margin-bottom: 0;
+	}
+
+	> p {
+		float: right;
+		font-size: 1.2em;
+		line-height: 1.5em; /* 18px */
+	}
+
+	> ul > li {
+		font-size: 1.2em;
+		line-height: 1.5em; /* 18px */
+		margin-bottom: 0;
+	}
+}
+
+form {
+	margin-bottom: 1.2em;
+
+	> fieldset > legend {
+		position: absolute;
+		text-indent: -999em;
+	}
+}
+
+h1 {
+	float: left;
+	font: bold 3em/2em $font-stack-sans-serif; /* #/60px */
+	letter-spacing: .025em;
+
+	> a {
+		display: inline-block;
+
+		&:active,
+		&:focus,
+		&:hover,
+		&:link,
+		&:visited {
+			color: inherit;
+		}
+	}
+}
+
+h2, h3, h4, h5, h6 {
+	font: {
+		family: $font-stack-sans-serif;
+		weight: bold;
+	}
+	letter-spacing: .025em;
+}
+
+h2 {
+	font-size: 2.5em;
+	line-height: 1.68em; /* 42px */
+}
+
+h3 {
+	font-size: 2em;
+	line-height: 2.1em; /* 42px */
+}
+
+h4 {
+	font-size: 1.8em;
+	line-height: 2em; /* 36px */
+}
+
+h5 {
+	font-size: 1.6em;
+	line-height: 2.25em; /* 36px */
+}
+
+h6 {
+	font-size: 1.5em;
+	line-height: 2.4em; /* 36px */
+}
+
+header {
+	display: block;
+	margin: 0 auto 1.2em;
+	overflow: hidden;
+	padding: 0 1em;
+	width: 94em;
+}
+
+hr {
+	border: {
+		style: solid;
+		width: .1em 0 0 0;
+	}
+	color: $grey;
+	margin: 0 6em 1.1em;
+}
+
+html {
+	background-color: $off-white;
+	overflow-y: scroll;
+}
+
+i {
+	font-style: italic;
+}
+
+ins {
+	border-bottom: 1px dashed;
+	text-decoration: none;
+}
+
+kbd {
+	font-family: $font-stack-monospace;
+}
+
+li > ol,
+li > ul {
+	> li {
+		font-size: 1em; /* 15px */
+		line-height: 1.6em; /* 24px */
+		margin-left: 1.2em; /* 18px */
+	}
+}
+
+mark {
+	background: $light-yellow;
+	display: inline-block;
+	padding: 0 .2em; /* 0 3px */
+}
+
+nav {
+	float: right;
+	margin: 1.8em 0;
+
+	> ol {
+		list-style: none;
+		margin-bottom: 0;
+		overflow: hidden;
+
+		> li {
+			float: left;
+			font-size: 1em;
+			margin-left: 2em;
+
+			> a {
+				display: block;
+				font-size: 1.5em;
+				line-height: 1.6em; /* 24px */
+			}
+		}
+	}
+}
+
+ol {
+	list-style: {
+		position: inside;
+		type: decimal;
+	}
+	margin-bottom: 1.2em;
+
+	> li {
+		font-size: 1.5em;
+		line-height: 1.6em; /* 24px */
+
+		> ol {
+			list-style-type: lower-alpha;
+			margin-bottom: 0;
+
+			> li > ol {
+				list-style-type: lower-roman;
+			}
+		}
+
+		> ul {
+			margin-bottom: 0;
+		}
+	}
+}
+
+p {
+	font-size: 1.5em;
+	line-height: 1.6em; /* 24px */
+	margin-bottom: .8em; /* 12px */
+}
+
+pre {
+	@include border-radius(.125em); /* 2px */
+
+	background: $light-grey;
+	color: $light-red;
+	font: 1.6em/1.5em $font-stack-monospace; /* #/24px */
+	margin-bottom: .75em; /* 12px */
+	padding: .375em .625em; /* 6px 10px */
+}
+
+q {
+	font-style: italic;
+}
+
+samp {
+	font-family: $font-stack-monospace;
+}
+
+section {
+	float: left;
+	margin-bottom: 1.2em;
+	padding: 0 1em;
+	position: relative;
+	width: 58em;
+}
+
+strong {
+	font-weight: bold;
+}
+
+table {
+	border: {
+		collapse: collapse;
+		spacing: 0;
+	}
+	margin-bottom: 1.2em;
+
+	> tbody {
+		> tr {
+			background: $light-grey;
+			border-bottom: .1em dashed #ccc; /* 1px */ /* TODO color */
+
+			&:last-child {
+				border-bottom: 0;
+			}
+
+			> td {
+				font-size: 1.5em;
+				line-height: 2em;
+				padding: 0 .6em; /* 0 9px */
+			}
+
+			> th {
+				border-right: .0625em solid $grey; /* 1px */
+				font: {
+					size: 1.6em;
+					weight: normal;
+				}
+				line-height: 1.875em; /* 30px */
+				padding: 0 .625em; /* 0 10px */
+				text-align: right;
+			}
+		}
+	}
+
+	> tfoot {
+		> tr {
+			background-color: $white;
+			border-top: .1em solid $grey;
+
+			> td {
+				font-size: 1.6em;
+				line-height: 1.875em; /* 30px */
+				padding: 0 .625em; /* 0 10px */
+			}
+
+			> th {
+				border-right: .0625em solid $grey; /* 1px */
+				font-size: 1.6em;
+				line-height: 1.875em; /* 30px */
+				padding: 0 .625em; /* 0 10px */
+				text-align: right;
+			}
+		}
+	}
+
+	> thead {
+		background: #ccc; /* TODO color */
+
+		> tr {
+			border-bottom: .1em solid $grey;
+
+			> th {
+				font: {
+					size: 1.6em;
+					weight: normal;	
+				}
+				line-height: 1.875em; /* 30px */
+				padding: 0 1.25em; /* 0 20px */
+
+				&:first-child {
+					@include border-top-left-radius(.125em); /* 2px */
+				}
+
+				&:last-child {
+					@include border-top-right-radius(.125em); /* 2px */
+				}
+			}
+		}
+	}
+}
+
+ul {
+	list-style: {
+		position: inside;
+		style-type: disc;	
+	}
+	margin-bottom: 1.2em;
+
+	> li {
+		font-size: 1.5em;
+		line-height: 1.6em; /* 24px */
+
+		> ol {
+			margin-bottom: 0;
+		}
+
+		> ul {
+			list-style-type: circle;
+			margin-bottom: 0;
+
+			> li > ul {
+				list-style-type: square;
+			}
+		}
+	}
+}
+
+var {
+	font: {
+		family: $font-stack-monospace;
+		style: italic;
+	}
+}
+
+/* DEBUG (uncomment to debug horizontal grid) */
+/*
+* {
+	background-color: rgba(255,0,0,.1);
+}
+
+body {
+	background: {
+		image: url(../images/960.gs/16_col.gif);
+		position: center top;
+		repeat: repeat-y;
+	}
+}
+*/

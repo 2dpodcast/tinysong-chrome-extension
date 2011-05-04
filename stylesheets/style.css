@@ -1,0 +1,177 @@
+:focus {
+  outline: 0; }
+
+a {
+  color: #5ea4c7; }
+  a:active {
+    color: #99c47c; }
+  a:hover {
+    color: #316680; }
+
+body {
+  color: #222;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  width: 360px; }
+
+em {
+  color: #888;
+  font-style: normal; }
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0; }
+
+footer {
+  border-top: 1px solid #ddd;
+  margin-top: 9px;
+  padding-top: 8px; }
+  footer > a {
+    font-size: 12px; }
+
+form > fieldset > div > label {
+  font-size: 12px;
+  line-height: 18px;
+  margin-right: 10px; }
+
+h2 {
+  font-size: 15px;
+  line-height: 18px;
+  margin-bottom: 0; }
+
+header {
+  background: #c0f3f2 url(../images/header-gradient.png) repeat-x right bottom;
+  padding-bottom: 9px;
+  position: relative;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px; }
+  header > h1 {
+    background: url(../images/header-lightofgod.png) no-repeat scroll center top transparent;
+    margin: 0;
+    padding-top: 5px; }
+    header > h1 > a {
+      background: url(../images/logo.png) no-repeat center center;
+      display: block;
+      height: 27px;
+      margin: 0 auto;
+      padding: 9px 10px;
+      text-indent: -999em;
+      width: 111px; }
+
+p {
+  font-size: 12px;
+  line-height: 18px; }
+
+section {
+  background: white url(../images/header-clouds.png) no-repeat center top;
+  padding-top: 9px; }
+  section > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+    section > ul > li {
+      border-bottom: 1px solid #ccc;
+      font-size: 12px;
+      line-height: 18px;
+      margin: 0;
+      overflow: hidden;
+      padding: 5px 0 4px; }
+      section > ul > li:last-child {
+        border-bottom: 0;
+        padding-bottom: 0; }
+      section > ul > li > div {
+        float: right;
+        width: 320px; }
+
+span {
+  font-size: 10px; }
+
+#clipboard {
+  /* field has to be hidden, but both visibility: hidden and display: none break .focus() */
+  position: absolute;
+  right: -999em;
+  top: -999em; }
+
+#options > form > fieldset {
+  border: 0;
+  padding: 0; }
+#options > header {
+  padding-bottom: 0; }
+#options > section {
+  background: url(../images/header-clouds-transparent.png) no-repeat center top;
+  padding-top: 9px;
+  position: relative;
+  top: -9px; }
+
+#popup > header > form > fieldset {
+  background: #3e6d6a url(../images/magnifier.png) no-repeat right center;
+  border: 5px solid #e2fffe;
+  margin: 0 5px;
+  overflow: hidden;
+  padding: 5px;
+  -webkit-border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px #adadad; }
+  #popup > header > form > fieldset > input[type="text"] {
+    background: #3e6d6a;
+    border: 0;
+    color: #fff;
+    float: left;
+    font-size: 12px;
+    width: 305px; }
+
+.copy {
+  background: url(../images/paperclip.png) no-repeat left center;
+  float: right;
+  padding-left: 16px; }
+
+.error,
+.message {
+  margin-top: 10px;
+  padding: 10px 20px;
+  text-align: center;
+  -webkit-border-radius: 5px; }
+
+.error {
+  background: #fee3e3;
+  color: #cc4343; }
+
+.message {
+  background: #dffbe5;
+  color: #2e5435; }
+
+.play {
+  background: url(/images/play.png) no-repeat scroll transparent;
+  background-position: 0 -29px;
+  cursor: pointer;
+  display: block;
+  float: left;
+  height: 29px;
+  text-indent: -999em;
+  width: 29px; }
+  .play:hover {
+    background-position: right top; }
+  .play:active {
+    background-position: 0 -58px; }
+
+.success {
+  background-image: url(../images/success.png); }
+
+.ui-autocomplete {
+  background: #fff;
+  border-color: #7f9db9;
+  border-style: solid;
+  border-width: 1px;
+  list-style: none;
+  padding: 0;
+  position: absolute;
+  top: 4px;
+  width: 305px; }
+  .ui-autocomplete > li {
+    font-size: 12px;
+    line-height: 18px; }
+    .ui-autocomplete > li > a {
+      color: inherit;
+      display: block; }
+      .ui-autocomplete > li > a#ui-active-menuitem {
+        background: #3875d7;
+        color: #fff; }

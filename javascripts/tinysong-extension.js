@@ -3,7 +3,7 @@
 		api: {
 			grooveshark: 'gs://s/~/%s/play',
 			gsuser: 'http://gsuser.com/getSongTokenFromBase62/%s',
-			tinysong: 'http://tinysong.com/s/%s?format=json&limit=5'
+			tinysong: 'http://tinysong.com/s/%s?format=json&limit=5&key=API_KEY'
 		},
 
 		autocomplete: {

@@ -1,0 +1,88 @@
+@mixin background-gradient($color-top: none, $color-bottom: none) {
+	background-color: $color-bottom;
+
+	background-image: -webkit-gradient(linear, left top, left bottom, from($color-top), to($color-bottom));
+  background-image: -webkit-linear-gradient(top, $color-top, $color-bottom);
+  background-image:    -moz-linear-gradient(top, $color-top, $color-bottom);
+  background-image:     -ms-linear-gradient(top, $color-top, $color-bottom);
+  background-image:      -o-linear-gradient(top, $color-top, $color-bottom);
+  background-image:         linear-gradient(top, $color-top, $color-bottom); /* standard, but currently unimplemented */
+}
+
+// add border around entire element
+@mixin border-radius($radius: 0) {
+	border-radius:         $radius;
+  -moz-border-radius:    $radius;
+  -webkit-border-radius: $radius;
+}
+
+@mixin border-bottom-radius($radius: 0) {
+	border-radius:         0 0 $radius $radius;
+	-moz-border-radius:    0 0 $radius $radius;
+	-webkit-border-radius: 0 0 $radius $radius;
+}
+
+@mixin border-left-radius($radius: 0) {
+	border-radius:         $radius 0 0 $radius;
+	-moz-border-radius:    $radius 0 0 $radius;
+	-webkit-border-radius: $radius 0 0 $radius;
+}
+
+@mixin border-right-radius($radius: 0) {
+	border-radius:         0 $radius $radius 0;
+	-moz-border-radius:    0 $radius $radius 0;
+	-webkit-border-radius: 0 $radius $radius 0;
+}
+
+@mixin border-top-radius($radius: 0) {
+	border-radius:         $radius $radius 0 0;
+	-moz-border-radius:    $radius $radius 0 0;
+	-webkit-border-radius: $radius $radius 0 0;
+}
+
+@mixin border-bottom-left-radius($radius: 0) {
+	border-bottom-left-radius:         $radius;
+  -moz-border-radius-bottom-left:    $radius;
+  -webkit-border-bottom-left-radius: $radius;
+}
+
+@mixin border-bottom-right-radius($radius: 0) {
+	border-bottom-right-radius:         $radius;
+  -moz-border-radius-bottom-right:    $radius;
+  -webkit-border-bottom-right-radius: $radius;
+}
+
+@mixin border-top-left-radius($radius: 0) {
+	border-top-left-radius:         $radius;
+  -moz-border-radius-top-left:    $radius;
+  -webkit-border-top-left-radius: $radius;
+}
+
+@mixin border-top-right-radius($radius: 0) {
+	border-top-right-radius:         $radius;
+  -moz-border-radius-top-right:    $radius;
+  -webkit-border-top-right-radius: $radius;
+}
+
+@mixin box-shadow($position-x: 0, $position-y: 0, $blur: 0, $color: #000) {
+	box-shadow:         $position-x $position-y $blur $color;
+	-moz-box-shadow:    $position-x $position-y $blur $color;
+	-webkit-box-shadow: $position-x $position-y $blur $color;
+}
+
+@mixin box-shadow-inset($position-x: 0, $position-y: 0, $blur: 0, $color: #000) {
+	box-shadow:         inset $position-x $position-y $blur $color;
+	-moz-box-shadow:    inset $position-x $position-y $blur $color;
+	-webkit-box-shadow: inset $position-x $position-y $blur $color;
+}
+
+@mixin form-field-border {
+	border: {
+		bottom-color: #999; /* TODO color */
+		left-color: #ccc; /* TODO color */
+		right-color: #999; /* TODO color */
+		style: solid;
+		top-color: #ccc; /* TODO color */
+		width: .0625em; /* 1px */
+	}
+}

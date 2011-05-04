@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.3.2 (May 4th, 2011)
+
+* Wow this must have been out of order for a while. Added API key.
+
+
 ## 1.3.1 (July 27th, 2010)
 
 * Removed TODO.md, creating [issues][issues] on GitHub instead
